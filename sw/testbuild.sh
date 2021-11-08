@@ -19,6 +19,9 @@ cd $ZEPHYR_BASE
 # uart test
 west build -p always -b beagleconnect_freedom $ZPRJ/uart_test -d $ZEPHYR_BASE/build/uart_test -- -DBOARD_ROOT=$ZPRJ/wpanusb_bc
 
+# uart test receiving 
+west build -p always -b beagleconnect_freedom $ZPRJ/uart_test_receiving -d $ZEPHYR_BASE/build/uart_test_receiving -- -DBOARD_ROOT=$ZPRJ/wpanusb_bc
+
 #west build -p always -b beagleconnect_freedom $ZPRJ/sensortest -d $ZEPHYR_BASE/build/sensortest_beagleconnect -- -DOVERLAY_CONFIG=overlay-subghz.conf -DBOARD_ROOT=$ZPRJ/wpanusb_bc -DCONFIG_NET_CONFIG_IEEE802154_RADIO_TX_POWER=14 -DCONFIG_IEEE802154_CC13XX_CC26XX_SUB_GHZ_DIV_SETUP_PA=1 -DCONFIG_IEEE802154_CC13XX_CC26XX_SUB_GHZ_CS_THRESHOLD=-20
 
 # SubG
