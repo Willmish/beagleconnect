@@ -30,5 +30,5 @@ BUILDING:
 https://github.com/Willmish/beagleconnect/blob/master/sw/testbuild.sh
 
 FLASHING:
-https://github.com/Willmish/beagleconnect/blob/master/sw/flash-cc1352-uarttest.sh
+https://github.com/Willmish/beagleconnect/blob/master/sw/flash-cc1352-uarttest_receiving.sh
 
