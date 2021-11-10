@@ -53,7 +53,7 @@ void main(void)
     while(1)
     {
         if(uart_poll_in(dev, &rec_char)==0)
-            LOG_INF("%c", rec_char);
+            LOG_INF("Received char nr: %d, char: '%c'", (int) rec_char, rec_char);
         led_is_on = !led_is_on;
         k_msleep(BLINK_MS);
     }

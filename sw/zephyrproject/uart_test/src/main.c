@@ -13,6 +13,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <random/rand32.h>
+#include <console/console.h>
 
 #define LOG_LEVEL LOG_LEVEL_INF
 #include <logging/log.h>
@@ -36,6 +37,7 @@ void main(void)
     unsigned char rec_char;
 
     dev = device_get_binding(DT_LABEL(UART0));
+    console_init();
 
     if (dev == NULL)
     {
@@ -45,22 +47,19 @@ void main(void)
     uart_configure(dev, &uart_cfg);
     if(!device_is_ready(dev))
     {
-        LOG_INF("UART DEV not ready");
+        printk("UART DEV not ready");
         return;
     }
 
-    LOG_INF("All good, sending messages...");
+    printk("All good, sending messages...");
     while(1)
     {
         //if(uart_poll_in(dev, &rec_char)==0)
         //    LOG_INF("%c", rec_char);
-        if (led_is_on)
-            uart_poll_out(dev, '1');
-        else
-            uart_poll_out(dev, '0');
-        uart_poll_out(dev, '\n');
-        LOG_INF("SENT!");
+        uint8_t s = console_getchar();
+        printk("char: %c\n", s);
+        uart_poll_out(dev, (unsigned char) s);
+        printk("SENT!\n");
         led_is_on = !led_is_on;
-        k_msleep(BLINK_MS);
     }
 }
